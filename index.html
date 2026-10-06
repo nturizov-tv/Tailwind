@@ -1,0 +1,258 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Tecla | Accesorios tech para estudiar, programar y jugar</title>
+  <meta name="description" content="Teclados, audífonos y mouse con envío a toda Colombia.">
+
+  <!-- Tipografías -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:wght@600;800&family=Instrument+Sans:wght@400;500;600&display=swap" rel="stylesheet">
+
+  <!-- Tailwind por CDN (sin build, ideal para un solo archivo) -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    // Tema global: colores y fuentes definidos una sola vez
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            grafito: '#1F2430',
+            hielo: '#EEF1F5',
+            menta: '#0B7A6E',
+            tecla: '#FFC52E'
+          },
+          fontFamily: {
+            display: ['"Bricolage Grotesque"', 'system-ui', 'sans-serif'],
+            sans: ['"Instrument Sans"', 'system-ui', 'sans-serif']
+          }
+        }
+      }
+    };
+  </script>
+
+  <style>
+    /* Foco visible para teclado: verde en zonas claras, amarillo en zonas oscuras */
+    :focus-visible { outline: 2px solid #0B7A6E; outline-offset: 3px; }
+    .zona-oscura :focus-visible { outline-color: #FFC52E; }
+    @media (prefers-reduced-motion: no-preference) { html { scroll-behavior: smooth; } }
+  </style>
+</head>
+
+<body class="bg-hielo font-sans text-grafito antialiased">
+
+  <!-- 1. HEADER: logo y navegación principal -->
+  <header class="sticky top-0 z-10 border-b border-grafito/10 bg-white/90 backdrop-blur">
+    <div class="mx-auto flex max-w-6xl flex-wrap items-center justify-between px-5 py-4">
+      <a href="#inicio" class="flex items-center gap-2.5 font-display text-2xl font-extrabold tracking-tight">
+        <span aria-hidden="true" class="flex h-9 w-9 items-center justify-center rounded-lg bg-grafito text-lg text-tecla shadow-[0_3px_0_0_#0B7A6E]">T</span>
+        Tecla
+      </a>
+
+      <button id="menu-btn" type="button" aria-controls="menu" aria-expanded="false"
+              class="rounded-lg border border-grafito/20 p-2 md:hidden">
+        <span class="sr-only">Abrir menú</span>
+        <svg aria-hidden="true" class="h-6 w-6" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round">
+          <path d="M4 7h16M4 12h16M4 17h16"/>
+        </svg>
+      </button>
+
+      <nav id="menu" aria-label="Principal" class="hidden w-full md:block md:w-auto">
+        <ul class="flex flex-col gap-1 pt-3 md:flex-row md:gap-8 md:pt-0 font-medium">
+          <li><a href="#inicio" class="block py-2 hover:text-menta">Inicio</a></li>
+          <li><a href="#productos" class="block py-2 hover:text-menta">Productos</a></li>
+          <li><a href="#contacto" class="block py-2 hover:text-menta">Contacto</a></li>
+        </ul>
+      </nav>
+    </div>
+  </header>
+
+  <main>
+    <!-- 2. HERO: título, subtítulo y botón CTA -->
+    <section id="inicio" class="zona-oscura bg-grafito text-white">
+      <div class="mx-auto grid max-w-6xl items-center gap-12 px-5 py-20 md:py-28 lg:grid-cols-[1.3fr_1fr]">
+        <div>
+          <h1 class="max-w-2xl font-display text-4xl font-extrabold leading-[1.05] tracking-tight sm:text-5xl md:text-6xl">
+            Teclados, audífonos y mouse que se sienten bien.
+          </h1>
+          <p class="mt-5 max-w-xl text-lg text-white/80">
+            Accesorios para estudiar, programar y jugar, con envío a toda Colombia.
+          </p>
+          <!-- El CTA imita una tecla: se hunde al presionarlo -->
+          <a href="#productos"
+             class="mb-2 mt-9 inline-block rounded-xl border-t border-white/50 bg-tecla px-8 py-4 font-display text-lg font-extrabold text-grafito shadow-[0_6px_0_0_#B8890A] transition-all duration-100 hover:brightness-105 active:translate-y-1.5 active:shadow-[0_0_0_0_#B8890A] motion-reduce:transition-none">
+            Ver productos
+          </a>
+        </div>
+
+        <!-- Decoración: teclas que forman la marca -->
+        <div aria-hidden="true" class="hidden grid-cols-5 gap-3 lg:grid">
+          <span class="flex aspect-square items-center justify-center rounded-xl bg-[#2E3647] font-display text-3xl font-extrabold shadow-[0_6px_0_0_#12151C]">T</span>
+          <span class="flex aspect-square items-center justify-center rounded-xl bg-[#2E3647] font-display text-3xl font-extrabold shadow-[0_6px_0_0_#12151C]">E</span>
+          <span class="flex aspect-square items-center justify-center rounded-xl bg-[#2E3647] font-display text-3xl font-extrabold shadow-[0_6px_0_0_#12151C]">C</span>
+          <span class="flex aspect-square items-center justify-center rounded-xl bg-[#2E3647] font-display text-3xl font-extrabold shadow-[0_6px_0_0_#12151C]">L</span>
+          <span class="flex aspect-square items-center justify-center rounded-xl bg-[#2E3647] font-display text-3xl font-extrabold shadow-[0_6px_0_0_#12151C]">A</span>
+        </div>
+      </div>
+    </section>
+
+    <!-- 3. GRID DE CARDS: 3 productos, 1 columna en móvil y 3 en escritorio -->
+    <section id="productos" class="mx-auto max-w-6xl px-5 py-20">
+      <h2 class="font-display text-3xl font-extrabold tracking-tight md:text-4xl">Lo más pedido</h2>
+      <p class="mt-3 max-w-lg text-grafito/70">Tres básicos para armar un escritorio cómodo sin gastar de más.</p>
+
+      <div class="mt-10 grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
+
+        <article class="flex flex-col overflow-hidden rounded-2xl bg-white shadow-sm ring-1 ring-grafito/10">
+          <div class="flex h-52 items-center justify-center bg-[#D5ECE8]">
+            <svg role="img" aria-label="Teclado mecánico" viewBox="0 0 200 120" class="w-52">
+              <rect x="10" y="25" width="180" height="80" rx="10" fill="#1F2430"/>
+              <g stroke="#EEF1F5" stroke-width="12" stroke-dasharray="14 2">
+                <line x1="20" y1="41" x2="180" y2="41"/>
+                <line x1="20" y1="57" x2="180" y2="57"/>
+                <line x1="20" y1="73" x2="180" y2="73"/>
+              </g>
+              <rect x="20" y="35" width="14" height="12" fill="#FFC52E"/>
+              <rect x="52" y="85" width="96" height="12" fill="#EEF1F5"/>
+            </svg>
+          </div>
+          <div class="flex flex-1 flex-col p-6">
+            <h3 class="font-display text-xl font-extrabold">Teclado mecánico 75%</h3>
+            <p class="mt-2 text-grafito/70">Switches lineales silenciosos, Bluetooth y cable USB-C. Cabe en la mochila.</p>
+            <p class="mt-4 font-display text-2xl font-extrabold">$289.000</p>
+            <button type="button" class="mt-5 w-full rounded-lg border border-grafito/20 px-4 py-2.5 font-semibold transition-colors hover:bg-grafito hover:text-white">Agregar al carrito</button>
+          </div>
+        </article>
+
+        <article class="flex flex-col overflow-hidden rounded-2xl bg-white shadow-sm ring-1 ring-grafito/10">
+          <div class="flex h-52 items-center justify-center bg-[#FFEFC2]">
+            <svg role="img" aria-label="Audífonos inalámbricos" viewBox="0 0 200 120" class="w-52">
+              <path d="M45 72 V60 a55 55 0 0 1 110 0 V72" fill="none" stroke="#1F2430" stroke-width="10" stroke-linecap="round"/>
+              <rect x="30" y="62" width="30" height="46" rx="13" fill="#0B7A6E"/>
+              <rect x="140" y="62" width="30" height="46" rx="13" fill="#0B7A6E"/>
+              <rect x="30" y="62" width="10" height="46" rx="5" fill="#1F2430"/>
+              <rect x="160" y="62" width="10" height="46" rx="5" fill="#1F2430"/>
+            </svg>
+          </div>
+          <div class="flex flex-1 flex-col p-6">
+            <h3 class="font-display text-xl font-extrabold">Audífonos inalámbricos</h3>
+            <p class="mt-2 text-grafito/70">Cancelación de ruido y 40 horas de batería. Para clases, código y videollamadas.</p>
+            <p class="mt-4 font-display text-2xl font-extrabold">$219.000</p>
+            <button type="button" class="mt-5 w-full rounded-lg border border-grafito/20 px-4 py-2.5 font-semibold transition-colors hover:bg-grafito hover:text-white">Agregar al carrito</button>
+          </div>
+        </article>
+
+        <article class="flex flex-col overflow-hidden rounded-2xl bg-white shadow-sm ring-1 ring-grafito/10 sm:col-span-2 lg:col-span-1">
+          <div class="flex h-52 items-center justify-center bg-[#DCE2EB]">
+            <svg role="img" aria-label="Mouse ligero" viewBox="0 0 200 120" class="w-52">
+              <rect x="70" y="12" width="60" height="98" rx="30" fill="#1F2430"/>
+              <path d="M70 58 H130 M100 12 V58" stroke="#EEF1F5" stroke-width="2" fill="none"/>
+              <rect x="96" y="26" width="8" height="18" rx="4" fill="#FFC52E"/>
+            </svg>
+          </div>
+          <div class="flex flex-1 flex-col p-6">
+            <h3 class="font-display text-xl font-extrabold">Mouse ligero</h3>
+            <p class="mt-2 text-grafito/70">62 gramos, sensor de 12.000 DPI y batería para un mes de uso.</p>
+            <p class="mt-4 font-display text-2xl font-extrabold">$159.000</p>
+            <button type="button" class="mt-5 w-full rounded-lg border border-grafito/20 px-4 py-2.5 font-semibold transition-colors hover:bg-grafito hover:text-white">Agregar al carrito</button>
+          </div>
+        </article>
+
+      </div>
+    </section>
+
+    <!-- 4. FORMULARIO: campos de contacto estilizados -->
+    <section id="contacto" class="bg-white">
+      <div class="mx-auto grid max-w-6xl gap-12 px-5 py-20 md:grid-cols-2">
+        <div>
+          <h2 class="font-display text-3xl font-extrabold tracking-tight md:text-4xl">¿Dudas con tu pedido?</h2>
+          <p class="mt-3 max-w-md text-grafito/70">Cuéntanos qué necesitas y te respondemos en menos de un día hábil. También puedes escribirnos a hola@tecla.example.</p>
+        </div>
+
+        <form id="form-contacto" class="space-y-5">
+          <div>
+            <label for="nombre" class="mb-1.5 block font-semibold">Nombre</label>
+            <input id="nombre" name="nombre" type="text" required autocomplete="name"
+                   class="w-full rounded-lg border border-grafito/25 bg-white px-4 py-3 focus:border-menta">
+          </div>
+          <div>
+            <label for="correo" class="mb-1.5 block font-semibold">Correo</label>
+            <input id="correo" name="correo" type="email" required autocomplete="email"
+                   class="w-full rounded-lg border border-grafito/25 bg-white px-4 py-3 focus:border-menta">
+          </div>
+          <div>
+            <label for="asunto" class="mb-1.5 block font-semibold">Asunto</label>
+            <select id="asunto" name="asunto"
+                    class="w-full rounded-lg border border-grafito/25 bg-white px-4 py-3 focus:border-menta">
+              <option>Consulta sobre un producto</option>
+              <option>Estado de mi pedido</option>
+              <option>Garantía</option>
+            </select>
+          </div>
+          <div>
+            <label for="mensaje" class="mb-1.5 block font-semibold">Mensaje</label>
+            <textarea id="mensaje" name="mensaje" rows="4" required
+                      class="w-full rounded-lg border border-grafito/25 bg-white px-4 py-3 focus:border-menta"></textarea>
+          </div>
+          <button type="submit"
+                  class="rounded-lg bg-grafito px-7 py-3 font-semibold text-white transition-colors hover:bg-menta">
+            Enviar mensaje
+          </button>
+          <p id="estado" role="status" class="min-h-[1.5rem] font-semibold text-menta"></p>
+        </form>
+      </div>
+    </section>
+  </main>
+
+  <!-- 5. FOOTER: enlaces y créditos -->
+  <footer class="zona-oscura bg-grafito text-white/80">
+    <div class="mx-auto grid max-w-6xl gap-10 px-5 py-14 md:grid-cols-[1.5fr_1fr_1fr]">
+      <div>
+        <p class="font-display text-2xl font-extrabold text-white">Tecla</p>
+        <p class="mt-3 max-w-xs">Accesorios tech con envío a toda Colombia.</p>
+      </div>
+      <nav aria-label="Tienda">
+        <p class="font-semibold text-white">Tienda</p>
+        <ul class="mt-3 space-y-2">
+          <li><a href="#productos" class="hover:text-tecla">Productos</a></li>
+          <li><a href="#contacto" class="hover:text-tecla">Contacto</a></li>
+          <li><a href="#" class="hover:text-tecla">Envíos y garantía</a></li>
+        </ul>
+      </nav>
+      <nav aria-label="Legal">
+        <p class="font-semibold text-white">Legal</p>
+        <ul class="mt-3 space-y-2">
+          <li><a href="#" class="hover:text-tecla">Términos y condiciones</a></li>
+          <li><a href="#" class="hover:text-tecla">Política de privacidad</a></li>
+        </ul>
+      </nav>
+    </div>
+    <div class="border-t border-white/10">
+      <p class="mx-auto max-w-6xl px-5 py-5 text-sm">
+        © 2026 Tecla. Taller de Desarrollo de Aplicaciones Web, hecho con Tailwind CSS.
+      </p>
+    </div>
+  </footer>
+
+  <script>
+    // Menú móvil
+    const botonMenu = document.getElementById('menu-btn');
+    const menu = document.getElementById('menu');
+    botonMenu.addEventListener('click', () => {
+      const abierto = menu.classList.toggle('hidden') === false;
+      botonMenu.setAttribute('aria-expanded', String(abierto));
+    });
+
+    // Formulario: confirmación en pantalla (no se envía a ningún servidor)
+    const form = document.getElementById('form-contacto');
+    const estado = document.getElementById('estado');
+    form.addEventListener('submit', (e) => {
+      e.preventDefault();
+      estado.textContent = 'Mensaje enviado. Te respondemos pronto.';
+      form.reset();
+    });
+  </script>
+</body>
+</html>
